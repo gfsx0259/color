@@ -1,4 +1,4 @@
-package com.gfx.color.entity;
+package com.gfx.color.entity.action;
 
 public class Color {
     public int h;

@@ -1,32 +1,37 @@
 package com.gfx.color.controller;
 
-import com.gfx.color.entity.Action;
+import com.gfx.color.entity.info.Group;
 import com.gfx.color.infrastructure.HttpClient;
-import com.gfx.color.service.ActionFactory;
-import com.gfx.color.service.RequestBuilder;
+import com.gfx.color.service.client.YandexApiClient;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 
 public class HelloController {
+    @FXML
+    public ComboBox<Group> groups;
+
     @FXML
     public ColorPicker colorPicker;
 
     @FXML
     public TextField token;
 
+    private YandexApiClient client;
+
+    @FXML
+    public void initialize() throws IOException {
+        this.client = new YandexApiClient(new HttpClient(this.token.getText()));
+
+        this.groups.setItems(FXCollections.observableArrayList(this.client.getInfo().getGroups()));
+        this.groups.getSelectionModel().selectFirst();
+    }
+
     @FXML
     protected void onColorPicked() throws IOException {
-        Action action = ActionFactory
-                .createColor(colorPicker.getValue())
-                .factory();
-
-        HttpClient requestBuilder = new HttpClient(this.token.getText());
-        requestBuilder
-                .post(
-                    "/groups/4ccc5cbf-0b37-46cf-b0c4-2899668cdda0/actions",
-                        new RequestBuilder().build(action)
-                );
+        this.client.setColor(colorPicker.getValue());
     }
 }

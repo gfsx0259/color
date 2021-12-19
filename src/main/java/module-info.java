@@ -16,7 +16,8 @@ module com.gfx.color {
 
     opens com.gfx.color to javafx.fxml;
     exports com.gfx.color;
-    exports com.gfx.color.entity;
     exports com.gfx.color.controller;
     opens com.gfx.color.controller to javafx.fxml;
+    exports com.gfx.color.entity.action;
+    exports com.gfx.color.entity.info;
 }

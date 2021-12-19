@@ -1,8 +1,8 @@
 package com.gfx.color.service.action;
 
-import com.gfx.color.entity.Action;
-import com.gfx.color.entity.Color;
-import com.gfx.color.entity.State;
+import com.gfx.color.entity.action.Action;
+import com.gfx.color.entity.action.Color;
+import com.gfx.color.entity.action.State;
 import com.gfx.color.service.ActionFactory;
 
 public class ColorFactory extends ActionFactory {

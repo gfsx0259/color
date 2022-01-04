@@ -1,41 +1,42 @@
 package com.gfx.color.infrastructure;
 
-import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import java.io.IOException;
 
 public class HttpClient {
-    private final String url = "https://api.iot.yandex.net/v1.0/";
     private final String token;
 
     public HttpClient(String token) {
         this.token = token;
     }
 
-    public HttpResponse post(String action, String body) throws IOException {
-        HttpPost httpPost = new HttpPost(this.url.concat(action));
+    public HttpResponse post(String uri, String body) throws IOException {
+        HttpPost httpPost = new HttpPost(uri);
 
         httpPost.addHeader("Authorization", this.token);
         httpPost.setEntity(new StringEntity(body, ContentType.APPLICATION_JSON));
 
-        return HttpClientBuilder
-                .create()
-                .build()
-                .execute(httpPost);
+        return this.fetch(httpPost);
     }
 
-    public HttpResponse get(String action) throws IOException {
-        HttpGet httpGet = new HttpGet(this.url.concat(action));
+    public HttpResponse get(String uri) throws IOException {
+        HttpGet httpGet = new HttpGet(uri);
 
         httpGet.addHeader("Authorization", this.token);
 
-        return HttpClientBuilder
+        return this.fetch(httpGet);
+    }
+
+    private HttpResponse fetch(HttpUriRequest request) throws IOException {
+        return new HttpResponse(HttpClientBuilder
                 .create()
                 .build()
-                .execute(httpGet);
+                .execute(request)
+        );
     }
 }

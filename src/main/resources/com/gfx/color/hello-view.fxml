@@ -5,11 +5,14 @@
 
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.gfx.color.controller.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
+
+    <ComboBox fx:id="groups"/>
     <TextField fx:id="token" text="Bearer AQAAAAADK_HHAAeMDtBD09-7zksIvQhEI9eZqlQ"/>
 
     <ColorPicker fx:id="colorPicker" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" onAction="#onColorPicked"/>

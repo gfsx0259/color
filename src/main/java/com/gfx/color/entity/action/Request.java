@@ -1,4 +1,4 @@
-package com.gfx.color.entity;
+package com.gfx.color.entity.action;
 
 import java.util.List;
 

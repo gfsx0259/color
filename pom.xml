@@ -6,7 +6,7 @@
 
     <groupId>com.gfx</groupId>
     <artifactId>color</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>color</name>
 
     <properties>

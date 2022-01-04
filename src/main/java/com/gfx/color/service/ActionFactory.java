@@ -1,6 +1,6 @@
 package com.gfx.color.service;
 
-import com.gfx.color.entity.Action;
+import com.gfx.color.entity.action.Action;
 import com.gfx.color.service.action.ColorFactory;
 import javafx.scene.paint.Color;
 

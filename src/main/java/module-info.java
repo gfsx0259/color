@@ -13,6 +13,7 @@ module com.gfx.color {
     requires com.google.gson;
     requires org.apache.httpcomponents.httpclient;
     requires org.apache.httpcomponents.httpcore;
+    requires org.apache.commons.lang3;
 
     opens com.gfx.color to javafx.fxml;
     exports com.gfx.color;

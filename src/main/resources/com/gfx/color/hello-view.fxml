@@ -4,8 +4,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.web.WebView?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.gfx.color.controller.HelloController">
     <padding>
@@ -13,7 +14,9 @@
     </padding>
 
     <ComboBox fx:id="groups"/>
-    <TextField fx:id="token" text="Bearer AQAAAAADK_HHAAeMDtBD09-7zksIvQhEI9eZqlQ"/>
-
     <ColorPicker fx:id="colorPicker" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" onAction="#onColorPicked"/>
+
+    <Button fx:id="getToken" onAction="#onTokenClick">Parse token</Button>
+
+    <WebView fx:id="browser"/>
 </VBox>

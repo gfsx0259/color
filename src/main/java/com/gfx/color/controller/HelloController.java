@@ -6,7 +6,6 @@ import com.gfx.color.service.client.ApiClient;
 import com.gfx.color.service.client.AuthClient;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.web.WebView;
@@ -18,31 +17,39 @@ public class HelloController {
     @FXML
     public ComboBox<Group> groups;
     public ColorPicker colorPicker;
-    public Button getToken;
     public WebView browser;
 
     private ApiClient apiClient;
-    private AuthClient authClient;
 
     @FXML
     public void initialize() throws URISyntaxException {
-        this.authClient = new AuthClient(browser.getEngine());
-        this.authClient.auth();
+        setModeGuest();
+
+        AuthClient authClient = new AuthClient(browser.getEngine(), "");
+        authClient.addListener(() -> {
+            this.groups.setItems(FXCollections.observableArrayList(this.apiClient.getInfo().getGroups()));
+            this.groups.getSelectionModel().selectFirst();
+
+            setModeAuthorized();
+        });
+
+        this.apiClient = new ApiClient(new HttpClient(), authClient);
     }
 
     @FXML
     protected void onColorPicked() throws IOException {
-        this.apiClient.setColor(colorPicker.getValue());
+        this.apiClient.setColor(colorPicker.getValue(), this.groups.getId());
     }
 
-    @FXML
-    public void onTokenClick() throws URISyntaxException, IOException {
+    private void setModeGuest() {
+        groups.setVisible(false);
+        colorPicker.setVisible(false);
+        browser.setVisible(true);
+    }
 
-        String token = this.authClient.parseToken();
-
-        this.apiClient = new ApiClient(new HttpClient(token));
-
-        this.groups.setItems(FXCollections.observableArrayList(this.apiClient.getInfo().getGroups()));
-        this.groups.getSelectionModel().selectFirst();
+    private void setModeAuthorized() {
+        groups.setVisible(true);
+        colorPicker.setVisible(true);
+        browser.setVisible(false);
     }
 }

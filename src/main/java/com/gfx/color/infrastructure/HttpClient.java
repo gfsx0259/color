@@ -9,25 +9,19 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import java.io.IOException;
 
 public class HttpClient {
-    private final String token;
-
-    public HttpClient(String token) {
-        this.token = token;
-    }
-
-    public HttpResponse post(String uri, String body) throws IOException {
+    public HttpResponse post(String uri, String body, String token) throws IOException {
         HttpPost httpPost = new HttpPost(uri);
 
-        httpPost.addHeader("Authorization", this.token);
+        httpPost.addHeader("Authorization", token);
         httpPost.setEntity(new StringEntity(body, ContentType.APPLICATION_JSON));
 
         return this.fetch(httpPost);
     }
 
-    public HttpResponse get(String uri) throws IOException {
+    public HttpResponse get(String uri, String token) throws IOException {
         HttpGet httpGet = new HttpGet(uri);
 
-        httpGet.addHeader("Authorization", this.token);
+        httpGet.addHeader("Authorization", token);
 
         return this.fetch(httpGet);
     }

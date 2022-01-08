@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class HttpClient {
     public HttpResponse post(String uri, String body, String token) throws IOException {
+        System.out.println(uri);
+        System.out.println(body);
         HttpPost httpPost = new HttpPost(uri);
 
         httpPost.addHeader("Authorization", token);

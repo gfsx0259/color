@@ -21,4 +21,5 @@ module com.gfx.color {
     opens com.gfx.color.controller to javafx.fxml;
     exports com.gfx.color.entity.action;
     exports com.gfx.color.entity.info;
+    exports com.gfx.color.entity.action.state;
 }

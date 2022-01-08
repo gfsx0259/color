@@ -2,7 +2,7 @@ package com.gfx.color.service.action;
 
 import com.gfx.color.entity.action.Action;
 import com.gfx.color.entity.action.Color;
-import com.gfx.color.entity.action.State;
+import com.gfx.color.entity.action.state.ColorState;
 import com.gfx.color.service.ActionFactory;
 
 public class ColorFactory extends ActionFactory {
@@ -21,7 +21,7 @@ public class ColorFactory extends ActionFactory {
         int Brightness = ((int) (this.color.getBrightness() * 100));
 
         Color color = new Color(Hue, Saturation, Brightness);
-        State state = new State("hsv", color);
+        ColorState state = new ColorState("hsv", color);
 
         return new Action(
             "devices.capabilities.color_setting",

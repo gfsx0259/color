@@ -47,6 +47,17 @@ public class ApiClient {
         );
     }
 
+    public void setState(boolean state, String groupId) throws IOException {
+        Action action = ActionFactory.createState(state).factory();
+        String token = this.authClient.getToken();
+
+        this.httpClient.post(
+                API_URI.concat(ENDPOINT_ACTION.formatted(groupId)),
+                this.buildRequest(action),
+                token
+        );
+    }
+
     private String buildRequest(Action action) {
         List<Action> actions = Collections.singletonList(action);
         return (new Gson())

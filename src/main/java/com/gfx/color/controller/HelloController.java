@@ -1,7 +1,9 @@
 package com.gfx.color.controller;
 
+import com.gfx.color.task.ChangeColorTask;
 import com.gfx.color.entity.info.Group;
 import com.gfx.color.infrastructure.HttpClient;
+import com.gfx.color.infrastructure.ColorDetector;
 import com.gfx.color.service.client.ApiClient;
 import com.gfx.color.service.client.AuthClient;
 import javafx.collections.FXCollections;
@@ -13,6 +15,7 @@ import javafx.scene.web.WebView;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Timer;
 
 public class HelloController {
     @FXML
@@ -60,5 +63,12 @@ public class HelloController {
         colorPicker.setVisible(true);
         state.setVisible(true);
         browser.setVisible(false);
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(
+            new ChangeColorTask(this.apiClient, new ColorDetector(), this.groups.getValue().id),
+            0,
+            3000
+        );
     }
 }

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.*?>
 
-<?import javafx.scene.control.ColorPicker?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.web.WebView?>
-<?import javafx.scene.control.CheckBox?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.gfx.color.controller.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.gfx.color.controller.HelloController">
+   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+      <children>
+          <WebView fx:id="browser" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="705.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 
-    <ComboBox fx:id="groups"/>
-    <CheckBox fx:id="state" onAction="#onStateChanged"/>
-    <ColorPicker fx:id="colorPicker" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" onAction="#onColorPicked"/>
-    <WebView fx:id="browser"/>
+          <ComboBox fx:id="groups" layoutX="252.0" layoutY="235.0" />
+          <CheckBox fx:id="state" layoutX="396.0" layoutY="72.0" onAction="#onStateChanged" />
+          <ColorPicker fx:id="colorPicker" layoutX="340.0" layoutY="103.0" onAction="#onColorPicked" />
+         <AmbientLight color="CHARTREUSE" lightOn="true" />
+      </children>
+   </AnchorPane>
 </VBox>
